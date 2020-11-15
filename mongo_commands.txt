@@ -1,0 +1,75 @@
+chuka_000@CHIJIOKE_ORION MINGW64 ~/Documents/Projects/web/chureact-blog-backend
+$ "C:\Program Files\MongoDB\Server\4.4\bin\mongo.exe"
+MongoDB shell version v4.4.1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("484bfe9d-fd1d-4b23-95cd-2e4e71b04417") }
+MongoDB server version: 4.4.1
+---
+The server generated these startup warnings when booting: 
+        2020-11-15T11:37:40.251+01:00: ***** SERVER RESTARTED *****
+        2020-11-15T11:37:47.064+01:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> use chu-blog
+switched to db chu-blog
+> db.articles.insert([{name: 'learn-react',upvotes:0,comments:[],},{name: 'learn-node',upvotes:0,comments:[],},{name:'my-thoughts-on-resumes',upvotes:0,comments:[],}])
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 3,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.articles.find({})
+{ "_id" : ObjectId("5fb107d3d2af17fe7f8a323f"), "name" : "learn-react", "upvotes" : 0, "comments" : [ ] }
+{ "_id" : ObjectId("5fb107d3d2af17fe7f8a3240"), "name" : "learn-node", "upvotes" : 0, "comments" : [ ] }
+{ "_id" : ObjectId("5fb107d3d2af17fe7f8a3241"), "name" : "my-thoughts-on-resumes", "upvotes" : 0, "comments" : [ ] }
+> db.articles.find({}).pretty()
+{
+        "_id" : ObjectId("5fb107d3d2af17fe7f8a323f"),
+        "name" : "learn-react",
+        "upvotes" : 0,
+        "comments" : [ ]
+}
+{
+        "_id" : ObjectId("5fb107d3d2af17fe7f8a3240"),
+        "name" : "learn-node",
+        "upvotes" : 0,
+        "comments" : [ ]
+}
+{
+        "_id" : ObjectId("5fb107d3d2af17fe7f8a3241"),
+        "name" : "my-thoughts-on-resumes",
+        "upvotes" : 0,
+        "comments" : [ ]
+}
+> db.articles.find({name:'learn-react'}).pretty()
+{
+        "_id" : ObjectId("5fb107d3d2af17fe7f8a323f"),
+        "name" : "learn-react",
+        "upvotes" : 0,
+        "comments" : [ ]
+}
+> db.articles.findOne({name:'learn-react'}).pretty()
+uncaught exception: TypeError: db.articles.findOne(...).pretty is not a function :
+@(shell):1:1
+> db.articles.findOne({name:'learn-react'})         
+{
+        "_id" : ObjectId("5fb107d3d2af17fe7f8a323f"),
+        "name" : "learn-react",
+        "upvotes" : 0,
+        "comments" : [ ]
+}
